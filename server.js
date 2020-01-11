@@ -3,7 +3,6 @@ const jwt = require('express-jwt');
 const jwks = require('jwks-rsa');
 const cors = require('cors');
 const morgan = require('morgan');
-const storage = require('./storage');
 
 require('dotenv').config();
 
@@ -39,7 +38,9 @@ let jwtCheck = jwt({
 
 app.use(jwtCheck);
 
-app.get('/storage', storage);
+app.get('/storage', function (req, res) {
+    res.send({storage: 'stored'});
+});
 
 
 let port = process.env.PORT || 8080;
