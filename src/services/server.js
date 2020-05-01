@@ -5,6 +5,9 @@ const jwtAuthz = require('express-jwt-authz');
 const cors = require('cors');
 const morgan = require('morgan');
 const { SERV_PORT } = process.env;
+const { t2sRouter } = require("../controllers/text_to_speech/text_to_speech_router")
+const AUTH0_AUDIENCE = "https://speakeasy.services";
+const AUTH0_DOMAIN = "dev-o50djmjs.auth0.com";
 
 require('dotenv').config();
 
@@ -24,14 +27,17 @@ const checkJwt = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`
+    jwksUri: `https://${AUTH0_DOMAIN}/.well-known/jwks.json`
   }),  // Validate the audience and the issuer.
-  audience: process.env.AUTH0_AUDIENCE,
-  issuer: `https://${process.env.AUTH0_DOMAIN}/`,
+  audience: AUTH0_AUDIENCE,
+  issuer: `https://${AUTH0_DOMAIN}/`,
   algorithms: ['RS256']
 });
 const checkScopes = jwtAuthz(['read:messages']);
 // app.use(jwtCheck);
+
+// Add Routes
+app.use("/t2s", t2sRouter);
 
 app.get('/api/public', function(req, res) {
   res.json({
