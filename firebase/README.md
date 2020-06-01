@@ -58,7 +58,7 @@ firebase login
 and then get your list of projects:
 
 ```bash
-firebase projects
+firebase projects:list
 ```
 
 and given the ID of the right project, do:
