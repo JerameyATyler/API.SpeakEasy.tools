@@ -1,0 +1,3 @@
+gcloud.json
+__pycache__/
+*.py[cod]

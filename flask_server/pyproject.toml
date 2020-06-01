@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "flask_server"
+version = "0.1.0"
+description = ""
+authors = ["Matthew Peveler <matt.peveler@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+flask = "^1.1.2"
+firebase-admin = "^4.3.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
